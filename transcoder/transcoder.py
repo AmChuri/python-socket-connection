@@ -28,9 +28,11 @@ s.close()
 print('connection closed')
 
 # here we will implement ffmpeg
+ 
+
 ff = FFmpeg(
-    inputs={'input.mp4': '-framerate 30 '},
-    outputs={'output.mp4': '-c:v libx264 -pix_fmt yuv420p -crf 23 '}
+    inputs={'input.mp4': None},
+    outputs={'output.mp4': '-filter:v scale=960:-1 -c:a copy '}
 )
 ff.run()
 
