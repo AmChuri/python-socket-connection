@@ -1,6 +1,6 @@
 import sys
 import socket                   # Import socket module
-import ffmpeg                  #import ffmpeg
+from ffmpy import FFmpeg                 #import ffmpeg
 # import ffmpeg-python as ffmpeg
 # ffmpeg = __import__("ffmpeg-python")
 

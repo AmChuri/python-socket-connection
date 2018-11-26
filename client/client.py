@@ -1,17 +1,17 @@
 import socket                   # Import socket module
-import ffmpeg                   #import ffmpeg
+from ffmpy import FFmpeg                  #import ffmpeg
 
 #ffmpeg = __import__("ffmpeg-python")
 
 s = socket.socket()             # Create a socket object
-host = "localhost"  #Ip address that the TCPServer  is there
-port = 50000                     # Reserve a port for your service every new transfer wants a new port or you must wait.
+host = "127.0.0.2"  #Ip address that the TCPServer  is there
+port = 5000                     # Reserve a port for your service every new transfer wants a new port or you must wait.
 
 s.connect((host, port))
-s.send(b'Hello server!')
+s.send(b'Hello transcoder from client!')
 # filename = s.recv(16)
 # filename = s.recv(filename)
-with open('movie.mp4', 'wb') as f:
+with open('final.mp4', 'wb') as f:
     print ('file opened')
     while True:
         print('receiving data...')
@@ -23,22 +23,12 @@ with open('movie.mp4', 'wb') as f:
         f.write(data)
 
 f.close()
-print('Successfully get the file')
+print('Successfully got the file')
 s.close()
 print('connection closed')
 
-print('Applying overlay')
-
-in_file = ffmpeg.input('movie.mp4')
-overlay_file = ffmpeg.input('overlay.jpg')
-(
-    ffmpeg
-    .concat(
-        in_file.trim(start_frame=10, end_frame=20),
-        in_file.trim(start_frame=30, end_frame=40),
-    )
-    .overlay(overlay_file.hflip())
-    .drawbox(50, 50, 120, 120, color='red', thickness=5)
-    .output('out.mp4')
-    .run()
+# here we will implement ffmpeg
+ff = FFmpeg(
+    inputs={'final.mp4': None}
 )
+ff.run()
