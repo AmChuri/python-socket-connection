@@ -1,11 +1,15 @@
+import sys
 import socket                   # Import socket module
-import ffmpeg                   #import ffmpeg
+# import ffmpeg                  #import ffmpeg
+# import ffmpeg-python as ffmpeg
+ffmpeg = __import__("ffmpeg-python")
 
 port = 50000                    # Reserve a port for your service every new transfer wants a new port or you must wait.
 s = socket.socket()             # Create a socket object
 host = "localhost"   # Get local machine name
 s.bind((host, port))            # Bind to the port
 s.listen(5)                     # Now wait for client connection.
+
 
 print ('Server listening....')
 
@@ -18,8 +22,8 @@ while True:
 
     filename='video.mp4' #In the same folder or path is this file running must the file you want to tranfser to be
     #send filename first
-    conn.send(filename);
-
+    # conn.send(b'',filename);
+    #
     f = open(filename,'rb')
     l = f.read(1024)
     while (l):
@@ -31,3 +35,4 @@ while True:
     print('Done sending')
     conn.send(b'connection closed')
     conn.close()
+    sys.exit(1)
