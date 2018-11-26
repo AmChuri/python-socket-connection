@@ -1,8 +1,8 @@
 import sys
 import socket                   # Import socket module
-# import ffmpeg                  #import ffmpeg
+import ffmpeg                  #import ffmpeg
 # import ffmpeg-python as ffmpeg
-ffmpeg = __import__("ffmpeg-python")
+# ffmpeg = __import__("ffmpeg-python")
 
 port = 50000                    # Reserve a port for your service every new transfer wants a new port or you must wait.
 s = socket.socket()             # Create a socket object

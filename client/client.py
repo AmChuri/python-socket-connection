@@ -1,7 +1,7 @@
 import socket                   # Import socket module
-# import ffmpeg-python                   #import ffmpeg
+import ffmpeg                   #import ffmpeg
 
-ffmpeg = __import__("ffmpeg-python")
+#ffmpeg = __import__("ffmpeg-python")
 
 s = socket.socket()             # Create a socket object
 host = "localhost"  #Ip address that the TCPServer  is there
